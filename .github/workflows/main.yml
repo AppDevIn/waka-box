@@ -1,0 +1,17 @@
+name: Trigger WakaTime stats
+on:
+  pull_request:
+  push:
+    branches:
+      - "master"
+jobs:
+  update-gist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Update gist
+        uses: matchai/waka-box@master
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GIST_ID: 420cea20f5512c9bf0da803861bbba84
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
